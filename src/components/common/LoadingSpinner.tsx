@@ -1,0 +1,13 @@
+export default function LoadingSpinner({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
+  const sizeClasses = {
+    sm: 'w-5 h-5 border-2',
+    md: 'w-8 h-8 border-[3px]',
+    lg: 'w-12 h-12 border-4',
+  };
+
+  return (
+    <div className="flex justify-center items-center py-12">
+      <div className={`${sizeClasses[size]} border-surface-muted border-t-primary rounded-full animate-spin`}></div>
+    </div>
+  );
+}
