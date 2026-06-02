@@ -100,7 +100,7 @@ export default function UserManagementPage() {
   const columns = [
     { key: 'full_name', header: 'Nama', render: (item: User) => (
       <div className="flex items-center gap-3">
-        <img src={item.avatar} alt={item.full_name} className="w-8 h-8 rounded-full" />
+        <img src={item.avatar || '/images/default-avatar.svg'} alt={item.full_name} className="w-8 h-8 rounded-full" />
         <div>
           <p className="font-medium text-sm">{item.full_name}</p>
           <p className="text-caption text-muted">@{item.username}</p>

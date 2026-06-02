@@ -65,7 +65,7 @@ export default function ProfilePage() {
                 <div className="flex-shrink-0">
                   <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl border-4 border-surface overflow-hidden shadow-lg bg-surface">
                     <img
-                      src={profile.avatar}
+                      src={profile.avatar || '/images/default-avatar.svg'}
                       alt={profile.full_name}
                       className="w-full h-full object-cover"
                     />
