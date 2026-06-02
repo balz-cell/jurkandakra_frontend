@@ -64,8 +64,8 @@ export default function Navbar() {
               </div>
             )}
             <div className="flex items-baseline gap-2">
-              <span className="font-display text-lg md:text-xl text-primary">Jurnalistik</span>
-              <span className="hidden sm:inline font-body text-xs text-muted">SMKN 2 Kra</span>
+              <span className={`font-display text-lg md:text-xl transition-colors duration-300 ${isScrolled ? 'text-primary' : 'text-white'}`}>Jurnalistik</span>
+              <span className={`hidden sm:inline font-body text-xs transition-colors duration-300 ${isScrolled ? 'text-muted' : 'text-white/70'}`}>SMKN 2 Kra</span>
             </div>
           </Link>
 
@@ -81,8 +81,8 @@ export default function Navbar() {
                 to={to}
                 className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
                   currentPath === to
-                    ? 'text-primary bg-primary/5'
-                    : 'text-text/70 hover:text-primary hover:bg-primary/5'
+                    ? `${isScrolled ? 'text-primary' : 'text-white'} bg-primary/5`
+                    : `${isScrolled ? 'text-text/70 hover:text-primary' : 'text-white/70 hover:text-white'} hover:bg-primary/5`
                 }`}
               >
                 {label}
@@ -94,7 +94,7 @@ export default function Navbar() {
             {categories.length > 0 && (
               <div className="relative group">
                 <button className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 flex items-center gap-1.5 ${
-                  currentPath.startsWith('/kategori/') ? 'text-primary bg-primary/5' : 'text-text/70 hover:text-primary hover:bg-primary/5'
+                  currentPath.startsWith('/kategori/') ? `${isScrolled ? 'text-primary' : 'text-white'} bg-primary/5` : `${isScrolled ? 'text-text/70 hover:text-primary' : 'text-white/70 hover:text-white'} hover:bg-primary/5`
                 }`}>
                   Kategori
                   <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${currentPath.startsWith('/kategori/') ? 'rotate-180' : 'group-hover:rotate-180'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -201,22 +201,18 @@ export default function Navbar() {
           </div>
 
           {/* Mobile: Hamburger */}
-          <div className="flex lg:hidden items-center gap-1 justify-end">
-            <button onClick={() => setIsSearchOpen(v => !v)} className={`flex items-center justify-center w-10 h-10 rounded-xl transition-all ${isSearchOpen ? 'bg-primary/10 text-primary' : `text-text ${isScrolled ? 'hover:bg-surface-muted' : 'hover:bg-white/10'}`}`}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isSearchOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                )}
+          <div className="flex lg:hidden items-center gap-0.5 justify-end">
+            <button onClick={() => setIsSearchOpen(v => !v)} className={`flex items-center justify-center w-9 h-9 rounded-lg transition-all ${isScrolled ? 'text-text hover:bg-surface-muted' : 'text-white/80 hover:bg-white/10'}`}>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <button onClick={() => setIsMobileMenuOpen(v => !v)} className={`flex items-center justify-center w-10 h-10 rounded-xl transition-all ${isScrolled ? 'text-text hover:bg-surface-muted' : 'text-white/90 hover:bg-white/10'}`}>
-              <div className="relative w-5 h-5">
-                <span className={`absolute left-0 block h-[2px] w-full rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-[3px]'} ${isScrolled ? 'bg-current' : 'bg-white/90'}`} />
-                <span className={`absolute left-0 top-1/2 -translate-y-1/2 block h-[2px] w-full rounded-full transition-all duration-200 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'} ${isScrolled ? 'bg-current' : 'bg-white/90'}`} />
-                <span className={`absolute left-0 block h-[2px] w-full rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-[3px]'} ${isScrolled ? 'bg-current' : 'bg-white/90'}`} />
-              </div>
+            <button onClick={() => setIsMobileMenuOpen(v => !v)} className={`flex items-center justify-center w-9 h-9 rounded-lg transition-all ${isScrolled ? 'text-text hover:bg-surface-muted' : 'text-white hover:bg-white/10'}`}>
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+                <path d="M4 7h16" style={{ transformOrigin: 'center', transition: 'all 0.3s', transform: isMobileMenuOpen ? 'translateY(5px) rotate(-45deg)' : 'translateY(0) rotate(0)' }} />
+                <path d="M4 12h16" style={{ transition: 'all 0.2s', opacity: isMobileMenuOpen ? 0 : 1 }} />
+                <path d="M4 17h16" style={{ transformOrigin: 'center', transition: 'all 0.3s', transform: isMobileMenuOpen ? 'translateY(-5px) rotate(45deg)' : 'translateY(0) rotate(0)' }} />
+              </svg>
             </button>
           </div>
         </div>
